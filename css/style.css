@@ -1,0 +1,736 @@
+/* 页面整体字体和背景颜色 */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #f8f2ef; /* 公司站 secondary 背景色 */
+    color: #232323;            /* 公司站 primary 字体色 */
+}
+
+.rowFlexSimple {
+    display: flex;
+}
+.rowFlexWrap {
+    flex-wrap: wrap;
+}
+.rowFlexRight {
+    justify-content: flex-end;
+}
+.rowFlexMiddle {
+    align-items: center;
+}
+.rowFlexBetween {
+    display: flex;
+    justify-content: space-between;
+}
+.rowFlexBetweenMid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rowFlexCenter {
+    display: flex;
+    align-items: center;
+}
+.rowFlexBetweenTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.gapSmall2x {
+    gap: 0.5rem;
+}
+.mtTop3x {
+    margin-top: 1rem;
+}
+.mbBottom2x {
+    margin-bottom: 0.5rem;
+}
+.mbBottom0x {
+    margin-bottom: 0 !important;
+}
+
+/* 顶部导航条 */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1030;
+    padding: 1rem 0;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease;
+    min-height: 70px;
+}
+
+.top-nav.transparent {
+    background: transparent;
+    box-shadow: none;
+}
+
+.top-nav.transparent.scrolled {
+    background: rgba(35, 35, 35, 0.96); /* 对应 #232323 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.top-nav.solid {
+    background: #232323;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.top-nav .navbar-brand,
+.top-nav .nav-link {
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.top-nav .nav-link {
+    font-weight: 500;
+    padding: 0.8rem 1rem;
+    position: relative;
+}
+
+.top-nav .nav-small-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.15rem !important; /* 和 .nav-link 纵向保持一致 */
+    border-radius: 999px;
+    line-height: 1;
+    margin-top: 2px; /* 微调向下，和“登录”基线对齐更自然 */
+    margin-bottom: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.top-nav .nav-small-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #ffffff !important;
+}
+
+.top-nav .nav-small-button::after {
+    content: none !important; /* 去掉橙色按钮下方那条下划线，避免看起来“顶不齐” */
+}
+
+/* 右上角用户名下拉菜单 */
+.nav-user {
+    position: relative;
+}
+
+.nav-username {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-username::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid rgba(255, 255, 255, 0.82);
+    transform: translateY(1px);
+    opacity: 0.9;
+}
+
+.nav-user-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 160px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(15, 23, 42, 0.92);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+    z-index: 2000;
+}
+
+.nav-user:hover .nav-user-menu,
+.nav-user:focus-within .nav-user-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-user-menu-item {
+    display: block;
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-user-menu-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.top-nav .nav-link.active::after,
+.top-nav .nav-link:hover::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.35rem;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+}
+
+/* 首页大横幅（Banner） */
+.home-banner {
+    min-height: 100vh;
+    background: linear-gradient(120deg, #2563eb, #1d4ed8);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding-top: 90px; /* 留出导航高度，避免被遮住 */
+    padding-bottom: 60px; /* 不做重叠，正常留白 */
+    display: flex;
+    align-items: center;
+}
+
+.home-banner > .container {
+    position: relative;
+    z-index: 2;
+}
+
+.home-banner-text-box {
+    max-width: 640px;
+}
+
+.home-banner::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: -80px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent 70%);
+    opacity: 0.7;
+}
+
+.home-banner-bg {
+    background: #111827;
+    background-image: url("https://tc-new.z.wiki/autoupload/Dx4Nks0S7QIuP-1A4yThKk50XNvH7SFq10KSpAxmNmg/20250828/SJOE/4000X2250/banner%E5%B0%8F.jpeg/webp");
+    background-size: cover;
+    background-position: center;
+}
+
+.home-banner-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.home-banner-bg::after {
+    content: none;
+}
+
+.home-banner-big-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+.home-banner-small-title {
+    font-size: 1.05rem;
+    max-width: 520px;
+}
+
+/* Banner 下面的主体内容区域 */
+.main-container {
+    margin-top: 0;
+    position: relative;
+    z-index: 2;
+    padding-top: 90px; /* 给非首页页面留出导航高度 */
+}
+
+/* 首页的 main 顶部可以小一点，因为上面有大横幅 */
+.main-home {
+    padding-top: 40px;
+}
+
+.banner-button-outline {
+    border-width: 2px;
+}
+
+/* 首页四个功能卡片的外层间距 */
+.homeBlockArea {
+    margin-bottom: 32px;
+}
+
+/* 首页卡片外观 */
+.homeInfoCardBox {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 18px 45px -20px rgba(15, 23, 42, 0.35);
+    overflow: hidden; /* 防止大图溢出卡片 */
+}
+
+.homeInfoCardText {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.homeInfoCardBox:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 60px -28px rgba(15, 23, 42, 0.45);
+}
+
+.homeInfoCardBox {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.homeInfoCardHeader {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.homeInfoCardTitle {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.homeInfoCardMore {
+    font-size: 0.9rem;
+}
+
+/* 电商风格卡片：二手 / 超市 / 失物 */
+.marketGoodsListGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+@media (max-width: 992px) {
+    .marketGoodsListGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .marketGoodsListGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.marketGoodsCard {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 18px 45px -28px rgba(15, 23, 42, 0.28);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.marketGoodsCard:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 60px -32px rgba(15, 23, 42, 0.38);
+}
+
+.marketGoodsPic {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #f3f4f6;
+    display: block;
+    object-fit: cover;
+}
+
+.marketGoodsBody {
+    padding: 12px 14px 14px;
+}
+
+.marketGoodsTitle {
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.5em;
+}
+
+.marketGoodsDesc {
+    color: #6b7280;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.3em;
+}
+
+.marketGoodsMeta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.marketGoodsPrice {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #ef4444;
+    white-space: nowrap;
+}
+
+.marketGoodsSub {
+    color: #6b7280;
+    font-size: 0.78rem;
+    white-space: nowrap;
+}
+
+/* 信息流卡片：活动 / 论坛（偏 X/INS 的 feed） */
+.feedListBox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feedItemCard {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 18px 45px -30px rgba(15, 23, 42, 0.25);
+    padding: 14px 16px;
+    overflow: hidden; /* 防止大图溢出卡片 */
+}
+
+.feedItemHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.feedItemTitle {
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin: 0;
+    line-height: 1.25;
+}
+
+.feedItemTitle a {
+    color: #111827;
+    text-decoration: none;
+}
+
+.feedItemTitle a:hover {
+    color: #2563eb;
+}
+
+.feedItemTags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.feedItemText {
+    color: #374151;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0 0 10px;
+}
+
+.feedItemFoot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: #6b7280;
+    font-size: 0.82rem;
+}
+
+/* 朋友圈风格配图（不做分端适配）：1 张缩略图，多图 2/3 列宫格 */
+.pengyouquanBlock {
+    margin-top: 8px;
+}
+
+.pengyouquanImgLink {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pengyouquanBlockSingle .pengyouquanImgOne {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    background: #f3f4f6;
+    display: block;
+    max-width: 100%; /* 兜底：避免超大截图撑破布局 */
+}
+
+.pengyouquanImgGrid {
+    display: grid;
+    gap: 6px;
+}
+
+.pengyouquanImgGrid.cols-3 {
+    grid-template-columns: repeat(3, 110px);
+    grid-auto-rows: 110px;
+}
+
+.pengyouquanImgGrid.cols-2 {
+    grid-template-columns: repeat(2, 110px);
+    grid-auto-rows: 110px;
+}
+
+.pengyouquanImgItem {
+    display: block;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    background: #f3f4f6;
+}
+
+.pengyouquanImgItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 简单图片查看器（全屏大图 + 左右切换） */
+.imgViewBigBox {
+    position: fixed;
+    inset: 0;
+    z-index: 2050;
+    display: none;
+}
+
+.imgViewBigBoxOpen {
+    display: block;
+}
+
+.imgViewBigBoxBg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.imgViewBigBoxBody {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.imgViewBigImg {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.imgViewBigClose {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.imgViewBigArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(15, 23, 42, 0.6);
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgViewBigPrev {
+    left: 20px;
+}
+
+.imgViewBigNext {
+    right: 20px;
+}
+
+.imgViewBodyLock {
+    overflow: hidden;
+}
+
+/* 小列表：活动 / 二手 / 失物 / 帖子 */
+.item-list,
+.itemListSmall {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item-row,
+.itemListRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.itemListRow:last-child {
+    border-bottom: none;
+}
+
+.item-title-link,
+.itemListTitleLink {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #111827;
+    text-decoration: none;
+}
+
+.itemListTitleLink:hover {
+    color: #2563eb;
+}
+
+.item-meta-text,
+.itemListMetaText {
+    font-size: 0.8rem;
+    color: #6b7280;
+    white-space: nowrap;
+    margin-left: 12px;
+}
+
+/* 小圆角标签，例如“已解决/紧急” */
+.statusSmallTag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+}
+
+.statusSmallTagOk {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.statusSmallTagWarn {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.statusSmallTagGray {
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
+
+/* 页面底部区域 */
+.page-footer {
+    background-color: #232323;
+    color: #f8f2ef;
+}
+
+.site-footer-signature {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    color: #aaa;
+    font-size: 14px;
+    margin-top: 18px;
+    border-radius: 12px;
+}
+
+.page-footer-links a {
+    color: rgba(248, 242, 239, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.page-footer-links a:hover {
+    color: #f8f2ef;
+}
+
+/* 统一的顶部提示条动画（flash） */
+.flashMsgBox {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.flashMsgShow {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.flashMsgHide {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+@media (max-width: 768px) {
+    .home-banner {
+        height: auto;
+        min-height: 100vh;
+        padding: 90px 0 48px;
+    }
+
+    .main-container {
+        margin-top: 0;
+        padding-top: 24px;
+    }
+}
+
+@media (max-width: 992px) {
+    .top-nav .navbar-collapse {
+        background: rgba(35, 35, 35, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 0.75rem;
+        border-radius: 14px;
+        margin-top: 0.75rem;
+    }
+
+    .top-nav .navbar-nav .nav-link {
+        padding: 0.85rem 0.9rem;
+        border-radius: 10px;
+    }
+
+    .top-nav .navbar-nav .nav-link:hover,
+    .top-nav .navbar-nav .nav-link:focus-visible {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
