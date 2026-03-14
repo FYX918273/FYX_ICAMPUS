@@ -1,0 +1,20 @@
+# ===== iCampus 项目 Git 忽略配置 =====
+
+# 上传的图片（这些是运行时数据，不需要进仓库）
+uploads/
+
+# 本地数据库导出文件
+icampus.sql
+
+# 不打算提交的设计/报告等文档
+不上传/
+
+# Mac 系统自动生成的文件
+.DS_Store
+
+# 临时编辑器文件（VSCode / Cursor / 其它）
+*.swp
+*.swo
+*.tmp
+*.log
+
