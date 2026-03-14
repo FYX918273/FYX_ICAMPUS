@@ -23,7 +23,8 @@
                     <h5 class="fw-bold mb-3">联系与说明</h5>
                     <p class="mb-1">学校：天津城市职业学院</p>
                     <p class="mb-1">邮箱：fanyuxuan24@icloud.com</p>
-                    <p class="mb-1">设计名单：范宇轩，梁博凯，李云峰，薛瑞</p>
+                    <p class="mb-1">网站开发：范宇轩</p>
+                    <p class="mb-1">设计方案：梁博凯，李云峰，薛瑞，姜春晖</p>
                     <p class="mb-1">https://github.com/FYX918273/FYX_ICAMPUS</p>
                     <p class="mb-0 small text-muted">
                         本系统为毕业设计，仅用于学习与演示。

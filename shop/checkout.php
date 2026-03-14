@@ -121,8 +121,9 @@ if (isPost()) {
                 $db->execute("DELETE FROM cart WHERE user_id = :uid", ['uid' => currentUserId()]);
 
                 $db->commit();
-                flash('success', '下单成功（模拟支付）。');
-                redirect('/shop/orders.php');
+                // 这里开始走“支付宝打赏彩蛋”流程：先下单，再跳到支付彩蛋页
+                flash('success', '下单成功，接下来进入支付宝支付彩蛋。');
+                redirect('/shop/pay.php?order_no=' . urlencode($orderNo));
             } catch (Throwable $e) {
                 $db->rollBack();
                 $error = $e->getMessage() ?: '下单失败，请稍后再试。';
